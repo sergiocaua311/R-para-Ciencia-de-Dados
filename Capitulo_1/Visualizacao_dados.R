@@ -1,0 +1,82 @@
+library(tidyverse)
+library(dados)
+library(ggthemes)
+
+# Carregar os dados
+
+dados::pinguins 
+
+ggplot2::ggplot(
+  data = pinguins,
+  mapping = ggplot2::aes(x = comprimento_nadadeira, y = massa_corporal)
+) + 
+  ggplot2::geom_point(mapping = ggplot2::aes(color = especie, shape = especie)) + 
+  ggplot2::geom_smooth(method = "lm") + 
+  ggplot2::labs(
+    title = "Massa corporal e comprimento de Nadadeira",
+    subtitle = "Medidas para Pinguim-de-adélia, Pinguim-de-barbicha e Pinguim-gentoo",
+    x = "Comprimento das nadadeiras (mm)",
+    y = "Massa corporal (g)",
+    color = "Espécie",
+    shape = "Espécie"
+  ) + 
+  ggthemes::scale_color_colorblind()
+  
+
+ggplot2::ggplot(
+  data =  pinguins,
+  mapping = ggplot2::aes(x = comprimento_bico, y = profundidade_bico)
+)+
+  ggplot2::geom_point(mapping = ggplot2::aes(color = especie, shape = especie)) +
+  ggplot2::geom_smooth(method = "lm") +
+  ggplot2::labs(
+    title = "Comprimento e profundidade do bico",
+    substitle = "Medidas para Pinguim-de-adélia, Pinguim-de-barbicha e Pinguim-gentoo",
+    x = "Comprimento bico (mm)",
+    y = "Profundidade bico (mm)",
+    color = "Espécie",
+    shape = "Espécie"
+  ) + 
+  ggthemes::scale_color_colorblind()
+
+ggplot2::ggplot(
+  data = pinguins,
+  mapping = ggplot2::aes(x = profundidade_bico)
+) +
+  ggplot2::stat_count(
+    mapping = ggplot2::aes(color = especie),
+    data = NULL,
+    geom = "bar",
+    position = "stack",
+    width = NULL,
+    na.rm = TRUE,
+    orientation = NA,
+    show.legend = NA,
+    inherit.aes = TRUE) +
+  ggplot2::labs(title = "Gráfico de Barras", caption = "Os dados são provenientes do pacote dados")
+  
+
+
+
+# Visualização comprimento_nadadeira X massa_corporal 
+
+ggplot2::ggplot(
+  data = pinguins,
+  mapping = ggplot2::aes(x = comprimento_nadadeira, y = massa_corporal, color = profundidade_bico)
+) + 
+  geom_point(na.rm = TRUE) +
+  geom_smooth(method = "loess", se = TRUE,color = "blue", na.rm = TRUE) +
+  scale_color_gradient(low = "darkblue", high = "cyan")+
+  theme_minimal()+
+  labs(
+    title = "Massa corporal e comprimento de Nadadeira",
+    subtitle = "Medidas para Pinguim-de-adélia, Pinguim-de-barbicha e Pinguim-gentoo",
+    x = "Comprimento das nadadeiras (mm)",
+    y = "Massa corporal (g)",
+    color = "Profundidade do bico (mm)"
+  )
+  
+
+
+
+  
