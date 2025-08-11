@@ -47,5 +47,25 @@ dados::diamante
 ggplot(diamante, aes(x = quilate)) +
   geom_histogram(na.rm = TRUE, binwidth = 0.1)
 
+# Box plot
+ggplot(pinguins, aes(x = especie, y= massa_corporal))+
+  geom_boxplot()
 
+ggplot(pinguins, aes(x = massa_corporal,color = especie, fill = especie))+
+  geom_density(linewidth = 0.75, na.rm = TRUE, alpha = 0.5)
 
+# Duas variáveis categóricas 
+
+ggplot(pinguins, aes(x = ilha, fill = especie))+
+  geom_bar()
+
+ggplot(pinguins, aes(x = ilha, fill = especie)) + 
+  geom_bar(position = "fill")
+
+# Duas variáveis numéricas
+
+ggplot(pinguins, aes( x = comprimento_nadadeira, y = massa_corporal)) +
+  geom_point(aes(color = especie, shape = especie), na.rm = TRUE) +
+  facet_wrap(~ilha)
+
+# Três ou mais variáveis
