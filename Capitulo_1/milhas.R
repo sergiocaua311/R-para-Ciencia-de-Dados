@@ -30,3 +30,10 @@ ggplot(
 ) +
   geom_point(na.rm = TRUE) +
   labs(color = "especie")
+
+#Salvando a última imagem 
+ggplot(milhas, aes(x = cidade, y = rodovia)) +
+  geom_point()
+ggplot(milhas, aes(x = classe)) +
+  geom_bar()
+ggsave("grafico-milhas.pdf")

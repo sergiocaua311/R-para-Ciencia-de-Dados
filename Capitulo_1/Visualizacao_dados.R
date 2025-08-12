@@ -75,7 +75,8 @@ ggplot2::ggplot(
     y = "Massa corporal (g)",
     color = "Profundidade do bico (mm)"
   )
-  
+ggsave(filename = "pinguim-plot.png") # Salvando o gráfico como imagem
+
 
 
 
