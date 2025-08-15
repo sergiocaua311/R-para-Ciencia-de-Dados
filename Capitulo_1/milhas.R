@@ -37,3 +37,16 @@ ggplot(milhas, aes(x = cidade, y = rodovia)) +
 ggplot(milhas, aes(x = classe)) +
   geom_bar()
 ggsave("grafico-milhas.pdf")
+
+#Testando o comportamento da função
+
+meu_grafico_de_barras <- ggplot(milhas, aes(x = classe)) +
+  geom_bar()
+meu_grafico_de_dispersao <- ggplot(milhas, aes(x = cidade, y = rodovia)) +
+  geom_point()
+
+#Agora consigo escolher qual plot quero salvar
+ggsave(filename = "milhas-plot.png", plot = meu_grafico_de_barras) 
+
+
+
