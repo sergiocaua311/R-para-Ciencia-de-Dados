@@ -52,7 +52,19 @@ voos|>
   arrange(desc(atraso_saida))|>
   View()
   
-
 #Remover linhas duplicadas
   
+voos |>
+  distinct()
 
+#Para encontrar pares únicos de origens e destinos
+
+voos |>
+  distinct(origem, destino)
+
+#Para exibir as outras colunas depois da filtragem
+voos |>
+  distinct(origem, destino, .keep_all = TRUE)
+
+voos |>
+  count(origem, destino, sort = TRUE)
