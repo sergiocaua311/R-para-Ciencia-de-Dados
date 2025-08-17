@@ -45,4 +45,14 @@ fevereiro
 
 #Funções de ordenação
 
+voos |>
+  arrange(ano,mes, dia, horario_saida) #Ordem crescente, primeiro ano, depois mes ..
+
+voos|>
+  arrange(desc(atraso_saida))|>
+  View()
+  
+
+#Remover linhas duplicadas
+  
 
