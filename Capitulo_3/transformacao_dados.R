@@ -68,3 +68,39 @@ voos |>
 
 voos |>
   count(origem, destino, sort = TRUE)
+
+#Alguns exercícios para praticar
+
+voos  |>
+  filter(atraso_chegada >=120) |># atraso está em minutos 
+  view()
+
+voos |>
+  filter(destino == "IAH" | destino == "HOU") |>
+  View()
+
+#Foi operado pela United, American ou Delta
+
+voos |>
+  filter(companhia_aerea == "AA" | companhia_aerea == "UA" | companhia_aerea == "DL") |>
+  view()
+
+#Decolou no verão
+
+voos |>
+  filter(mes == 7 | mes == 8 | mes == 9) |>
+  View()
+
+#Chegou com mais de duas horas de atraso, mas não teve atraso na decolagem
+
+voos |>
+  filter(atraso_saida <= 0 & atraso_chegada > 120) |>
+  View()
+
+#Atrasou pelo menos uma hora, mas recuperou mais de 30 minutos em vôo
+
+voos |>
+  filter(atraso_saida >= 60 & (atraso_saida - atraso_chegada) > 30)|>
+  View()
+  
+
