@@ -124,7 +124,6 @@ voos |>
   View()
 
 #Como eu adiciono as novas colunas ao meu tibble?
-
 voos <- voos |>
   mutate(
     tempo_ganho = atraso_saida - atraso_chegada,
@@ -137,7 +136,36 @@ voos <- voos |>
 colnames(voos)
 
 
+#Selecionando colunas em específico
+voos |>
+  select(ano,mes, dia)
 
+voos |>
+  select(ano:dia) #Seleciona todas as colunas entre ano e dia
+
+voos|>
+  select(!ano:dia) #Seleciona as colunas que não estão entre ano e dia
+
+#Para selecionar todas as colunas que são numéricas
+voos|>
+  select(where(is.numeric))
+
+?select
+
+voos|>
+  select(tail_num = cauda) #Isso não altera o nome da coluna em voos
+
+#Para alterar o nome das colunas
+voos <-voos|>
+  rename(id_cauda = cauda)
+ 
+
+view(voos)
+
+#Para realocar colunas de lugar
+voos|>
+  relocate(data_hora, tempo_voo, .after = origem)|>
+  view()
 
 
 
