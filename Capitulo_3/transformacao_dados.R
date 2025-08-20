@@ -103,4 +103,44 @@ voos |>
   filter(atraso_saida >= 60 & (atraso_saida - atraso_chegada) > 30)|>
   View()
   
+#Estudando as funções que modificam colunas
+
+voos |>
+  mutate(
+    tempo_ganho = atraso_saida - atraso_chegada,
+    velocidade = distancia / tempo_voo * 60,
+    .before = 1 #Serve para criar a coluna a esquerda do tibble
+    #Essa função .before pode criar colunas antes de variáveis do tibble
+  )
+
+voos |>
+  mutate(
+    tempo_ganho = atraso_saida - atraso_chegada,
+    velocidade = distancia / tempo_voo * 60,
+    horas = tempo_voo / 60,
+    tempo_ganho_por_hora = tempo_ganho / horas,
+    .keep = "used" #Mantém apenas as colunas usadas na função mutate
+  )|>
+  View()
+
+#Como eu adiciono as novas colunas ao meu tibble?
+
+voos <- voos |>
+  mutate(
+    tempo_ganho = atraso_saida - atraso_chegada,
+    velocidade = distancia / tempo_voo * 60,
+    horas = tempo_voo / 60,
+    tempo_ganho_por_hora = tempo_ganho / horas,
+  )
+
+#Visualizando as colunas do tibble
+colnames(voos)
+
+
+
+
+
+
+
+
 
