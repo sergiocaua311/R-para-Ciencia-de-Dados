@@ -168,6 +168,81 @@ voos|>
   view()
 
 
+#group_by()
+voos |> 
+  group_by(mes) |> 
+  summarize(
+    atraso = mean(atraso_saida, na.rm = TRUE), #Retorna a média do atraso_saída agrupado por mês
+    n = n() #Conta quantas linhas tem
+  )
+
+
+voos |> 
+  group_by(destino) |> 
+  slice_max(atraso_chegada, n=1,with_ties = FALSE) |> #with_ties para repetir linhas empatadas
+  relocate(destino) #Serve para puxar a coluna para frente do tibble
+
+
+por_dia <- voos |> 
+  group_by(dia, mes, ano)
+por_dia
+
+voos_diarios <- por_dia |> 
+  summarize(n = n(),
+            .groups = "drop_last")
+voos_diarios
+
+#ungrup()
+por_dia |> 
+  ungroup() 
+
+por_dia |> 
+  ungroup() |> 
+  summarize(
+    atraso_medio = mean(atraso_saida, na.rm = TRUE),
+    voos = n()
+  )
+
+#.by
+voos |> 
+  summarize(
+    atraso = mean(atraso_saida, na.rm = TRUE),
+    n = n(),
+    .by = c(dia,mes)
+  )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
