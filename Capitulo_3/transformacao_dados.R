@@ -212,14 +212,26 @@ voos |>
   )
 
 
+df <- tibble(
+  x = 1:5,
+  y = c("a", "b", "a", "a", "b"),
+  z = c("K", "K", "L", "L", "K")
+)
+
+df|>
+  group_by(y)
 
 
+##arrange ordena as linhas 
+df|> 
+  arrange(z)
 
+## Os dois abaixo faz a mesma coisa
+summarize(group_by(df,y),mean_x = mean(x))
 
-
-
-
-
+df |>
+  group_by(y) |>
+  summarize(mean_x = mean(x))
 
 
 
